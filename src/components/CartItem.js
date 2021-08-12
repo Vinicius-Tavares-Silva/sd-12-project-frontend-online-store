@@ -15,13 +15,14 @@ class CartItem extends React.Component {
       cartItemAddQuantity } = this.props;
 
     return (
-      <div>
+      <div className="list-group-item">
         <img alt="Foto do produto" src={ thumbnail } />
         <div className="cart-item-body">
           <h4 data-testid="shopping-cart-product-name">{title}</h4>
           <h5 className="cart-item-price">{`Preço: R$${price * quantity}`}</h5>
         </div>
         <button
+          className="btn btn-danger btn-sm m-1"
           data-testid="product-decrease-quantity"
           type="button"
           onClick={ () => cartItemDiminishQuantity(id) }
@@ -34,6 +35,7 @@ class CartItem extends React.Component {
           { `Quantidade: ${quantity}` }
         </span>
         <button
+          className="btn btn-success btn-sm m-1"
           data-testid="product-increase-quantity"
           type="button"
           onClick={ () => cartItemAddQuantity(id) }
@@ -41,6 +43,7 @@ class CartItem extends React.Component {
           +
         </button>
         <button
+          className="btn btn-outline-danger m1"
           data-testid="product-remove"
           type="button"
           onClick={ () => removeItem(id) }

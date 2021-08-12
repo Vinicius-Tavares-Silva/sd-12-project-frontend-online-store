@@ -46,10 +46,11 @@ class FormEvaluator extends React.Component {
     const { email, textArea } = this.state;
 
     return (
-      <form>
-        <h2>Avaliações</h2>
+      <form className="card form-control-sm evaluator-form">
+        <h2 className="card-header">Avaliações</h2>
         <label htmlFor="email">
           <input
+            className="m-2"
             type="email"
             id="email"
             value={ email }
@@ -58,8 +59,9 @@ class FormEvaluator extends React.Component {
           />
         </label>
         <label htmlFor="rating">
-          <div>
+          <div className="m-2">
             <input
+              className="m-1"
               name="rating"
               type="radio"
               value="1"
@@ -67,6 +69,7 @@ class FormEvaluator extends React.Component {
             />
             1
             <input
+              className="m-1"
               name="rating"
               type="radio"
               value="2"
@@ -74,6 +77,7 @@ class FormEvaluator extends React.Component {
             />
             2
             <input
+              className="m-1"
               name="rating"
               type="radio"
               value="3"
@@ -81,6 +85,7 @@ class FormEvaluator extends React.Component {
             />
             3
             <input
+              className="m-1"
               name="rating"
               type="radio"
               value="4"
@@ -88,6 +93,7 @@ class FormEvaluator extends React.Component {
             />
             4
             <input
+              className="m-1"
               name="rating"
               type="radio"
               value="5"
@@ -98,6 +104,7 @@ class FormEvaluator extends React.Component {
         </label>
         <label htmlFor="textArea">
           <textarea
+            className="m-2"
             data-testid="product-detail-evaluation"
             id="textArea"
             value={ textArea }
@@ -105,13 +112,16 @@ class FormEvaluator extends React.Component {
             onChange={ (event) => this.setState({ textArea: event.target.value }) }
           />
         </label>
-        <button
-          type="submit"
-          id="btn-form"
-          onClick={ () => this.buttonClick() }
-        >
-          Avaliar
-        </button>
+        <div>  
+          <button
+            className="btn btn-warning m-2"
+            type="submit"
+            id="btn-form"
+            onClick={ () => this.buttonClick() }
+            >
+            Avaliar
+          </button>
+        </div>
       </form>
     );
   }
