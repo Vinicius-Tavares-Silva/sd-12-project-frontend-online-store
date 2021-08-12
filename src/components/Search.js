@@ -96,6 +96,7 @@ class Search extends Component {
   renderSortSelector() {
     return (
       <form>
+        Ordenação 
         <label htmlFor="sort_select">
           <input
             name="sort_select"

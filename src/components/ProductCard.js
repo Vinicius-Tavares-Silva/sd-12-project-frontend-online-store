@@ -18,7 +18,7 @@ class ProductCard extends React.Component {
     } = product;
 
     return (
-      <div className="card shadow-sm m-2" style={ { width: '20%' } }>
+      <div className="card shadow-sm m-2 p-card" style={ { width: '20%' } }>
         <Link
           className="text-decoration-none"
           data-testid="product-detail-link"
@@ -35,7 +35,7 @@ class ProductCard extends React.Component {
             <img alt="Foto do produto" src={ thumbnail } />
             <div className="card-body product-card-body">
               <h4 className={ clastitle }>
-                {title}
+                {title.substring(0,50)}
               </h4>
               <h5 className={ classtext }>{ `Preço: R$${price}` }</h5>
               {freeShipping && (

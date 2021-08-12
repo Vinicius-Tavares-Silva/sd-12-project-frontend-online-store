@@ -58,28 +58,30 @@ class ProductDetail extends Component {
       );
     }
     return (
-      <div>
+      <div className="d-flex flex-column">
         <ButtonToCart cartList={ cartList } />
-        <div>
-          <p>DETALHES</p>
+        <div className="card product-details">
+          <h5 className="card-header">DETALHES</h5>
           <img alt="Foto do produto" src={ thumbnail } />
-          <div className="product-details-body">
+          <div className="product-details-body card-body">
             <p data-testid="product-detail-name">{title}</p>
             <p>{ id }</p>
             <p>{`Preço: R$${price}`}</p>
-            {shipping.free_shipping && <p data-testid="free-shipping">FRETE GRATIS!</p>}
+            {shipping.free_shipping && <p className="card-text text-decoration-none fs-6 text-success" data-testid="free-shipping">FRETE GRATIS!</p>}
             <p>{`Quantidade disponivel: ${availableQuantity}`}</p>
             <p>{`Quantidade vendida: ${soldQuantity}`}</p>
           </div>
         </div>
-        <button
-          type="button"
-          onClick={ () => addItemToCart(product, checkListInCart) }
-          data-testid="product-detail-add-to-cart"
-        >
-          ADICIONAR ITEM AO CARRINHO
-        </button>
-        <Link to="/">Voltar para home page</Link>
+        <div>
+          <button className="btn btn-info m-1"
+            type="button"
+            onClick={ () => addItemToCart(product, checkListInCart) }
+            data-testid="product-detail-add-to-cart"
+            >
+            ADICIONAR ITEM AO CARRINHO
+          </button>
+          <Link className="btn btn-secondary m-1" to="/">Voltar para home page</Link>
+        </div>
         <FormEvaluator />
       </div>
     );

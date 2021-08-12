@@ -20,29 +20,35 @@ class ShoppingCart extends Component {
     }
     return (
       <section>
-        <div>
-          <ul>
-            { cartList.map(
-              (item) => (<CartItem
-                key={ item.id }
-                item={ item }
-                removeItem={ removeItem }
-                cartItemDiminishQuantity={ cartItemDiminishQuantity }
-                cartItemAddQuantity={ cartItemAddQuantity }
-              />),
-            )}
-          </ul>
-          <div>{ `Total: R$${total}` }</div>
-          <Link
-            to="/checkout"
-          >
-            <button
-              type="button"
-              data-testid="checkout-products"
-            >
-              Checkout
-            </button>
-          </Link>
+        <div className="card cart-list">
+            <h3 className="card-header">Carrinho de Compras</h3>
+          <div className="d-flex">
+            <ul className="list-group flex-grow-1">
+              { cartList.map(
+                (item) => (<CartItem
+                  key={ item.id }
+                  item={ item }
+                  removeItem={ removeItem }
+                  cartItemDiminishQuantity={ cartItemDiminishQuantity }
+                  cartItemAddQuantity={ cartItemAddQuantity }
+                  />),
+                  )}
+            </ul>
+            <div className="d-flex flex-column m-2 align-items-center">
+            <h4>{ `Total: R$${total}` }</h4>
+            <Link
+              to="/checkout"
+              >
+              <button
+                className="btn btn-success btn-lg"
+                type="button"
+                data-testid="checkout-products"
+                >
+                Checkout
+              </button>
+            </Link>
+            </div>
+          </div>
         </div>
       </section>
     );
