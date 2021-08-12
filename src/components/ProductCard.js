@@ -4,14 +4,15 @@ import PropTypes from 'prop-types';
 
 class ProductCard extends React.Component {
   render() {
+    const { product, addItemToCart, checkListInCart } = this.props;
     const clastitle = 'card-title product-card-title text-decoration-none fs-5 text-dark';
     const classtext = 'card-text product-card-price text-decoration-none fs-6 text-dark';
-    const { product, addItemToCart } = this.props;
     const {
       title,
       price,
       thumbnail,
       id,
+      inCart,
       category_id: categoryID,
       shipping: { free_shipping: freeShipping },
     } = product;
@@ -21,7 +22,10 @@ class ProductCard extends React.Component {
         <Link
           className="text-decoration-none"
           data-testid="product-detail-link"
-          to={ `/product-details/${categoryID}/${id}` }
+          to={ {
+            pathname: `/product-details/${categoryID}/${id}`,
+            checkListInCart,
+          } }
         >
           <div
             className="d-flex flex-column"
@@ -48,10 +52,12 @@ class ProductCard extends React.Component {
         <button
           className="btn btn-info position-absolute bottom-0 start-0 m-1 btn-sm"
           type="button"
-          onClick={ () => addItemToCart(product) }
+          onClick={ () => {
+            addItemToCart(product, checkListInCart);
+          } }
           data-testid="product-add-to-cart"
         >
-          ADICIONAR ITEM AO CARRINHO
+          { inCart ? <div>Item já no carrinho</div> : 'Adicionar ao carrinho' }
         </button>
       </div>
     );
@@ -62,6 +68,7 @@ ProductCard.propTypes = {
   product: PropTypes.shape({
     category_id: PropTypes.string,
     title: PropTypes.string,
+    inCart: PropTypes.bool,
     price: PropTypes.number,
     thumbnail: PropTypes.string,
     id: PropTypes.string,
@@ -70,6 +77,7 @@ ProductCard.propTypes = {
     }),
   }).isRequired,
   addItemToCart: PropTypes.func.isRequired,
+  checkListInCart: PropTypes.func.isRequired,
 };
 
 export default ProductCard;

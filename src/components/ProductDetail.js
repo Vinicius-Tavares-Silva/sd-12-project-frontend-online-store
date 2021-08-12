@@ -37,7 +37,8 @@ class ProductDetail extends Component {
 
   render() {
     const { product, loading } = this.state;
-    const { addItemToCart, cartList } = this.props;
+    const { addItemToCart, cartList, location } = this.props;
+    const { checkListInCart } = location;
     const {
       title,
       price,
@@ -73,7 +74,7 @@ class ProductDetail extends Component {
         </div>
         <button
           type="button"
-          onClick={ () => addItemToCart(product) }
+          onClick={ () => addItemToCart(product, checkListInCart) }
           data-testid="product-detail-add-to-cart"
         >
           ADICIONAR ITEM AO CARRINHO
@@ -93,6 +94,7 @@ ProductDetail.propTypes = {
     }).isRequired,
   }).isRequired,
   addItemToCart: PropTypes.func.isRequired,
+  location: PropTypes.shape({ checkListInCart: PropTypes.func.isRequired }).isRequired,
   cartList: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 

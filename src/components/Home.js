@@ -47,23 +47,25 @@ class Home extends Component {
     this.setState({ total });
   }
 
-  addItemToCart(product) {
+  addItemToCart(product, checkListInCart) {
     const { cartList } = this.state;
     const selItem = cartList.find((item) => item.id === product.id);
     if (selItem !== undefined) {
       return this.cartItemAddQuantity(product.id);
     }
-
     product.quantity = 1;
     this.setState(({
       newProduct: product,
-    }), () => this.saveCart());
+    }), () => { this.saveCart(checkListInCart); });
   }
 
-  saveCart() {
+  saveCart(checkListInCart) {
     this.setState(({ cartList, newProduct }) => ({
       cartList: [...cartList, newProduct],
-    }), () => this.updateTotal());
+    }), () => {
+      this.updateTotal();
+      checkListInCart();
+    });
   }
 
   cartItemAddQuantity(id) {
