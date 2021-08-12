@@ -34,12 +34,15 @@ class CategoryList extends React.Component {
     }
     return (
       <div>
+        <h2 className="list-title">Categorias</h2>
         <ul>
           { categories.map((cat) => (
             <li
+              className="list-group-item li-list"
               key={ cat.id }
             >
               <input
+                className="btn-list"
                 data-testid="category"
                 type="button"
                 id={ cat.id }

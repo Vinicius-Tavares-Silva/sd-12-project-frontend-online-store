@@ -70,7 +70,7 @@ class Search extends Component {
 
   renderForm() {
     return (
-      <form>
+      <form className="form-inline my-2 my-lg-0">
         <label htmlFor="query">
           <input
             data-testid="query-input"
@@ -78,9 +78,11 @@ class Search extends Component {
             id="query"
             type="text"
             onChange={ (event) => this.setState({ queryText: event.target.value }) }
+            className="form-control mr-sm-2"
           />
         </label>
         <button
+          className="btn btn-outline-success my-2 my-sm-0"
           data-testid="query-button"
           type="button"
           onClick={ this.handleSubmit }
@@ -124,7 +126,7 @@ class Search extends Component {
     return (
       <div>
         { this.renderSortSelector() }
-        <ul>
+        <ul className="d-flex flex-wrap justify-content-evenly">
           { results.map(
             (prod) => (<ProductCard
               key={ prod.id }
@@ -141,14 +143,22 @@ class Search extends Component {
   render() {
     const { cartList } = this.props;
     return (
-      <div>
-        <div data-testid="home-initial-message">
-          Digite algum termo de pesquisa ou escolha uma categoria.
+      <div className="d-flex">
+        <div className="list-group category-list">
+          <CategoryList handleCategoryText={ this.handleCategoryText } />
         </div>
-        <ButtonToCart cartList={ cartList } />
-        <CategoryList handleCategoryText={ this.handleCategoryText } />
-        {this.renderForm()}
-        {this.renderList()}
+        <div className="container d-flex flex-column">
+          <div className="alignDiv">
+            <div className="search-bar" data-testid="home-initial-message">
+              Digite algum termo de pesquisa ou escolha uma categoria.
+              {this.renderForm()}
+            </div>
+            <div className="cart">
+              <ButtonToCart cartList={ cartList } />
+            </div>
+          </div>
+          {this.renderList()}
+        </div>
       </div>
     );
   }
